@@ -8,6 +8,13 @@ process::process()
 
 }
 
+process::process(int pid, int at, int bt, int p)
+{
+	set_PID(pid);
+	set_arrival_time(at);
+	set_burst_time(bt);
+	set_priority(p);
+}
 
 process::~process()
 {
