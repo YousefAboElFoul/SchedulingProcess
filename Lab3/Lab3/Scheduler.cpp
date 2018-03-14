@@ -7,7 +7,7 @@ using namespace std;
 Scheduler::Scheduler()
 {
 }
-Scheduler::Scheduler(int,int,bool,bool)
+Scheduler::Scheduler(process,process,bool,bool)
 {
 
 }
@@ -17,6 +17,7 @@ void Scheduler::setQueue1()
 }
 process Scheduler::getQueue1()
 {
+	return Queue1;
 }
 //--------------------------------------//
 void Scheduler::setQueue2()
@@ -24,6 +25,7 @@ void Scheduler::setQueue2()
 }
 process Scheduler::getQueue2()
 {
+	return Queue2;
 }
 //--------------------------------------//
 void Scheduler::setFlag1()

@@ -1,0 +1,7 @@
+﻿  Scheduler.cpp
+c:\users\user\documents\github\schedulingprocess\lab3\lab3\process.h(6): error C2011: 'process': 'class' type redefinition
+  c:\users\user\documents\github\schedulingprocess\lab3\lab3\process.h(6): note: see declaration of 'process'
+c:\users\user\documents\github\schedulingprocess\lab3\lab3\scheduler.cpp(8): fatal error C1903: unable to recover from previous error(s); stopping compilation
+  INTERNAL COMPILER ERROR in 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.11.25503\bin\HostX86\x86\CL.exe'
+      Please choose the Technical Support command on the Visual C++
+      Help menu, or open the Technical Support help file for more information
