@@ -7,6 +7,7 @@ class process
 public:
 
 	process();
+	process(int,int,int,int);
 	~process();
 
 	void set_PID(int);
@@ -20,8 +21,6 @@ public:
 
 	void set_priority(int);
 	int get_priority();
-
-
 
 private:
 	int PID, arrival_time, burst_time, priority;
