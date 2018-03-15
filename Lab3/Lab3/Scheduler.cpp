@@ -12,10 +12,9 @@ Scheduler::Scheduler()
 	}
 
 }
-Scheduler::Scheduler(bool f1,bool f2)
+Scheduler::Scheduler(bool f)
 {
-	setFlag1(f1);
-	setFlag2(f2);
+	setFlag(f);
 
 }
 
@@ -30,85 +29,112 @@ process * Scheduler::getQueue2()
 	return *Queue2;
 }
 //--------------------------------------//
-void Scheduler::setFlag1(bool f1)
+void Scheduler::setFlag(bool f)
 {
-	Flag1 = f1;
+	Flag = f;
 }
-bool Scheduler::getFlag1()
+bool Scheduler::getFlag()
 {
-	return Flag1;
+	return Flag;
 }
 //--------------------------------------//
-void Scheduler::setFlag2(bool f2)
-{
-	Flag2 = f2;
-}
-bool Scheduler::getFlag2()
-{
-	return Flag2;
-}
 
-bool Scheduler::insertProcess(process * p)
+bool Scheduler::insertProcess(process * Queue[], process * p) // check if this is possible
 {
 	for (int i = 0; i < 140; i++) // going through array
 	{
-		if (Queue1[i] == nullptr) // if not equal to null
+		if (Queue[i] == nullptr) // if not equal to null
 		{
-			Queue1[i] = p; // insert in array
+			Queue[i] = p; // insert in array
 
 		    // *need to add sorting algorithm here*
-			// sort by lowest priority "1" , first in queue[0]
+			// sort by highest number priority , first in queue[0]
 			return true;
 		}
 	}
 	return false;
 }
 
-bool Scheduler::removeProcess()
+bool Scheduler::removeProcess(process * Queue[])
 {
 	for (int i = 0; i < 140; i++) // going through array
 	{
-		if (Queue1[i] != nullptr) // if not equal to pointer
+		if (Queue[i] != nullptr) // if not equal to pointer
 		{
 
-				Queue1[i] = NULL; // set equal to null
+				Queue[i] = NULL; // set equal to null
 
 				// *need to add sorting algorithm here*
-				// sort by lowest priority "1" , first in queue[0]
+				// sort by highest number priority , first in queue[0]
 
 				return true;
+		}
+		else
+		{
+			Flag = false; // switch flags because active Queue is empty
+
 		}
 	}
 	return false;
 
 }
 
+void Scheduler::updatePriority()
+{
+	//figure out equation in pdf document
+}
+
 void Scheduler::schedulerRun()
 {
 	process * process_running;
+	int Tq;
 
-	if (Flag1 == true)
+	if (Flag == true)
 	{
 		process_running = Queue1[0];
-		removeProcess();
+		removeProcess(Queue1); // make sure you can pass array of pointers
 
 	}
 	else
 	{
 		process_running = Queue2[0];
-		removeProcess();
+		removeProcess(Queue2); // make sure you can pass array of pointers
 
 	}
 
 	if ((process_running->get_priority()) < 100)
 	{
-		int Tq = (140 - (process_running->get_priority())) * 20;
+		Tq = (140 - (process_running->get_priority())) * 20;
 	}
 	else
 	{
-		int Tq = (140 - (process_running->get_priority())) * 5;
+		Tq = (140 - (process_running->get_priority())) * 5;
 	}
 
+	if ((process_running->get_burst_time()) > Tq)
+	{
+		int time_left;
+
+		time_left = (process_running->get_burst_time()) - Tq;
+
+		process_running->set_burst_time(time_left); // set new burst time left after Tq
+	}
+	else
+	{
+		process_running->set_burst_time(0); // set new burst time = 0, since the process is done
+
+	}
+
+	if (Flag == true)
+	{
+		insertProcess(Queue2, process_running); // we are moving the processes into expired queue
+
+	}
+	else
+	{
+		insertProcess(Queue1, process_running); // we are moving the processes into expired queue
+
+	}
 }
 
 
