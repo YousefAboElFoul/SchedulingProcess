@@ -118,22 +118,21 @@ void Scheduler::schedulerRun()
 		time_left = (process_running->get_burst_time()) - Tq;
 
 		process_running->set_burst_time(time_left); // set new burst time left after Tq
+
+		if (Flag == true)
+		{
+			insertProcess(Queue2, process_running); // we are moving the processes back into expired queue
+
+		}
+		else
+		{
+			insertProcess(Queue1, process_running); // we are moving the processes back into expired queue
+
+		}
 	}
 	else
 	{
-		process_running->set_burst_time(0); // set new burst time = 0, since the process is done
-
-	}
-
-	if (Flag == true)
-	{
-		insertProcess(Queue2, process_running); // we are moving the processes into expired queue
-
-	}
-	else
-	{
-		insertProcess(Queue1, process_running); // we are moving the processes into expired queue
-
+		process_running->set_burst_time(0); // set new burst time = 0, process has terminated (we do not put it back into queue)
 	}
 }
 
