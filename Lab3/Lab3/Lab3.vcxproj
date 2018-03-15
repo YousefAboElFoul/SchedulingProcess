@@ -116,6 +116,7 @@
   <ItemGroup>
     <ClCompile Include="process.cpp" />
     <ClCompile Include="Scheduler.cpp" />
+    <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

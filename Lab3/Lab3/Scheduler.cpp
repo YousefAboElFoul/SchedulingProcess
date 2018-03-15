@@ -1,5 +1,4 @@
 #include "Scheduler.h"
-#include "process.h"
 #include <iostream>
 
 using namespace std;
@@ -15,7 +14,7 @@ void Scheduler::setQueue1()
 {
 
 }
-process Scheduler::getQueue1()
+process *Scheduler::getQueue1()
 {
 	return Queue1;
 }
@@ -23,7 +22,7 @@ process Scheduler::getQueue1()
 void Scheduler::setQueue2()
 {
 }
-process Scheduler::getQueue2()
+process *Scheduler::getQueue2()
 {
 	return Queue2;
 }
@@ -33,6 +32,7 @@ void Scheduler::setFlag1()
 }
 bool Scheduler::getFlag1()
 {
+	return false;
 }
 //--------------------------------------//
 void Scheduler::setFlag2()
@@ -40,6 +40,7 @@ void Scheduler::setFlag2()
 }
 bool Scheduler::getFlag2()
 {
+	return false;
 }
 
 

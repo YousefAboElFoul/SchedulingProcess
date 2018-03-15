@@ -10,10 +10,10 @@ public:
 	Scheduler(process, process, bool, bool);
 	//------setters and getters-------------//
 	void setQueue1();
-	process getQueue1();
+	process *getQueue1();
 	//--------------------------------------//
 	void setQueue2();
-	process getQueue2();
+	process*getQueue2();
 	//--------------------------------------//
 	void setFlag1();
 	bool getFlag1();
