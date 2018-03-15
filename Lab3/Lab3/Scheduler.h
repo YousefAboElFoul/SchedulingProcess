@@ -7,23 +7,30 @@ class Scheduler
 {
 public:
 	Scheduler();
-	Scheduler(process, process, bool, bool);
+	Scheduler(bool, bool);
 	//------setters and getters-------------//
-	void setQueue1();
-	process getQueue1();
+
+	process * getQueue1();
 	//--------------------------------------//
-	void setQueue2();
-	process getQueue2();
+	
+	process * getQueue2();
+
 	//--------------------------------------//
-	void setFlag1();
+	void setFlag1(bool);
 	bool getFlag1();
 	//--------------------------------------//
-	void setFlag2();
+	void setFlag2(bool);
 	bool getFlag2();
 	//--------------------------------------//
 
+	bool insertProcess(process * );
+	bool removeProcess();
+
+	void schedulerRun();
+
 private:
-	process Queue1[10], Queue2[10];
-	bool Flag1,FLag2;
+	process * Queue1[140];
+	process * Queue2[140];
+	bool Flag1, Flag2;
 };
 

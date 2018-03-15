@@ -23,7 +23,7 @@ public:
 	int get_priority();
 
 private:
-	int PID, arrival_time, burst_time, priority;
+	int PID, arrival_time, burst_time, priority, time_left;
 
 };
 
