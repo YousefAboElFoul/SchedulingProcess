@@ -22,6 +22,18 @@ public:
 	bool getFlag2();
 	//--------------------------------------//
 
+<<<<<<< HEAD
+=======
+	bool insertProcess(process * [], process * );
+	bool removeProcess(process * []);
+
+	void schedulerRun();
+
+	void sortingAlgorithm(process * [], int);
+
+	void updatePriority();
+
+>>>>>>> master
 private:
 	process Queue1[10], Queue2[10];
 	bool Flag1,FLag2;
