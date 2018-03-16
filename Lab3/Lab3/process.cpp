@@ -5,7 +5,7 @@ using namespace std;
 
 process::process()
 {
-	time_left = 0;
+
 }
 
 process::process(int pid, int at, int bt, int p)

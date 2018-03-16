@@ -27,6 +27,8 @@ public:
 
 	void schedulerRun();
 
+	void sortingAlgorithm(process * [], int);
+
 	void updatePriority();
 
 private:

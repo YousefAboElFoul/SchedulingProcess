@@ -47,8 +47,8 @@ bool Scheduler::insertProcess(process * Queue[], process * p) // check if this i
 		{
 			Queue[i] = p; // insert in array
 
-		    // *need to add sorting algorithm here*
-			// sort by highest number priority , first in queue[0]
+			sortingAlgorithm(Queue);
+
 			return true;
 		}
 	}
@@ -64,8 +64,7 @@ bool Scheduler::removeProcess(process * Queue[])
 
 				Queue[i] = NULL; // set equal to null
 
-				// *need to add sorting algorithm here*
-				// sort by highest number priority , first in queue[0]
+				sortingAlgorithm(Queue); // its empty for now
 
 				return true;
 		}
@@ -79,9 +78,35 @@ bool Scheduler::removeProcess(process * Queue[])
 
 }
 
+void Scheduler::sortingAlgorithm(process * Queue[], int size) // i will be implementing a simple bubble sort algorithm
+{
+	int i;
+	bool swap_occured = true;
+
+	while (swap_occured)
+	{
+			swap_occured = false;
+			
+			for (i = 0; i < size - 1; i++)
+			{
+				if ((Queue[i+1]->get_priority) > (Queue[i]->get_priority)) // add null case
+				{
+					
+					process * temp = Queue[i];
+					Queue[i] = Queue[i+1];
+					Queue[i+1] = temp;
+
+					swap_occured = true;
+
+				}
+			}
+	}
+
+}
+
 void Scheduler::updatePriority()
 {
-	//figure out equation in pdf document
+	
 }
 
 void Scheduler::schedulerRun()
