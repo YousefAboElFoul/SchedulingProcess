@@ -95,7 +95,7 @@ void Scheduler::sortingAlgorithm(process * Queue[], int size) // i will be imple
 			
 			for (i = 0; i < size - 1; i++)
 			{
-				if ((Queue[i+1]->get_priority) > (Queue[i]->get_priority)) // add null case
+				if ((Queue[i+1]->get_priority()) > (Queue[i]->get_priority())) // add null case
 				{
 					
 					process * temp = Queue[i];
