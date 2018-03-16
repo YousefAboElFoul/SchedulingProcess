@@ -2,11 +2,10 @@
 #include <iostream>
 
 using namespace std;
-//adding  a comment so that it can update in my branch
-
 
 Scheduler::Scheduler()
 {
+	// initializing both Queues
 	for (int i = 0; i < 3; i++)
 	{
 		Queue1[i] = nullptr;
@@ -16,41 +15,46 @@ Scheduler::Scheduler()
 }
 Scheduler::Scheduler(bool f)
 {
+	// initializing flag
 	setFlag(f);
 
 }
 
+//getter function for queue1
 process * Scheduler::getQueue1()
 {
 	return *Queue1;
 }
-//--------------------------------------//
 
+//getter function for queue2
 process * Scheduler::getQueue2()
 {
 	return *Queue2;
 }
-//--------------------------------------//
+
+//setter function for flag
 void Scheduler::setFlag(bool f)
 {
 	Flag = f;
 }
+
+//getter function for flag
 bool Scheduler::getFlag()
 {
 	return Flag;
 }
-//--------------------------------------//
+
 
 bool Scheduler::insertProcess(process * Queue[], process * p) // check if this is possible
 {
-	for (int i = 0; i < 140; i++) // going through array
+	for (int i = 0; i < size; i++) // going through array
 	{
 		if (Queue[i] == nullptr) // if not equal to null
 		{
 			Queue[i] = p; // insert in array
 
-		    // *need to add sorting algorithm here*
-			// sort by highest number priority , first in queue[0]
+			sortingAlgorithm(Queue);
+
 			return true;
 		}
 	}
@@ -59,15 +63,14 @@ bool Scheduler::insertProcess(process * Queue[], process * p) // check if this i
 
 bool Scheduler::removeProcess(process * Queue[])
 {
-	for (int i = 0; i < 140; i++) // going through array
+	for (int i = 0; i < size; i++) // going through array
 	{
 		if (Queue[i] != nullptr) // if not equal to pointer
 		{
 
 				Queue[i] = NULL; // set equal to null
 
-				// *need to add sorting algorithm here*
-				// sort by highest number priority , first in queue[0]
+				sortingAlgorithm(Queue); // its empty for now
 
 				return true;
 		}
@@ -81,9 +84,34 @@ bool Scheduler::removeProcess(process * Queue[])
 
 }
 
+void Scheduler::sortingAlgorithm(process * Queue[], int size) // i will be implementing a simple bubble sort algorithm
+{
+	int i;
+	bool swap_occured = true;
+
+	while (swap_occured)
+	{
+			swap_occured = false;
+			
+			for (i = 0; i < size - 1; i++)
+			{
+				if ((Queue[i+1]->get_priority) > (Queue[i]->get_priority)) // add null case
+				{
+					
+					process * temp = Queue[i];
+					Queue[i] = Queue[i+1];
+					Queue[i+1] = temp;
+
+					swap_occured = true;
+
+				}
+			}
+	}
+}
+
 void Scheduler::updatePriority()
 {
-	//figure out equation in pdf document
+	
 }
 
 void Scheduler::schedulerRun()
@@ -95,13 +123,11 @@ void Scheduler::schedulerRun()
 	{
 		process_running = Queue1[0];
 		removeProcess(Queue1); // make sure you can pass array of pointers
-
 	}
 	else
 	{
 		process_running = Queue2[0];
 		removeProcess(Queue2); // make sure you can pass array of pointers
-
 	}
 
 	if ((process_running->get_priority()) < 100)
@@ -124,12 +150,10 @@ void Scheduler::schedulerRun()
 		if (Flag == true)
 		{
 			insertProcess(Queue2, process_running); // we are moving the processes back into expired queue
-
 		}
 		else
 		{
 			insertProcess(Queue1, process_running); // we are moving the processes back into expired queue
-
 		}
 	}
 	else
