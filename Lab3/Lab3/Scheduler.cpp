@@ -5,8 +5,6 @@ using namespace std;
 
 Scheduler::Scheduler()
 {
-<<<<<<< HEAD
-=======
 	// initializing both Queues
 	for (int i = 0; i < 3; i++)
 	{
@@ -14,19 +12,9 @@ Scheduler::Scheduler()
 		Queue2[i] = nullptr;
 	}
 
->>>>>>> master
 }
-Scheduler::Scheduler(process,process,bool,bool)
+Scheduler::Scheduler(bool f)
 {
-<<<<<<< HEAD
-
-}
-void Scheduler::setQueue1()
-{
-
-}
-process *Scheduler::getQueue1()
-=======
 	// initializing flag
 	setFlag(f);
 
@@ -40,35 +28,21 @@ process * Scheduler::getQueue1()
 
 //getter function for queue2
 process * Scheduler::getQueue2()
->>>>>>> master
 {
-	return Queue1;
+	return *Queue2;
 }
-<<<<<<< HEAD
-//--------------------------------------//
-void Scheduler::setQueue2()
-=======
 
 //setter function for flag
 void Scheduler::setFlag(bool f)
->>>>>>> master
 {
+	Flag = f;
 }
-<<<<<<< HEAD
-process *Scheduler::getQueue2()
-=======
 
 //getter function for flag
 bool Scheduler::getFlag()
->>>>>>> master
 {
-	return Queue2;
+	return Flag;
 }
-<<<<<<< HEAD
-//--------------------------------------//
-void Scheduler::setFlag1()
-{
-=======
 
 
 bool Scheduler::insertProcess(process * Queue[], process * p) // check if this is possible
@@ -85,12 +59,10 @@ bool Scheduler::insertProcess(process * Queue[], process * p) // check if this i
 		}
 	}
 	return false;
->>>>>>> master
 }
-bool Scheduler::getFlag1()
+
+bool Scheduler::removeProcess(process * Queue[])
 {
-<<<<<<< HEAD
-=======
 	for (int i = 0; i < size; i++) // going through array
 	{
 		if (Queue[i] != nullptr) // if not equal to pointer
@@ -108,14 +80,9 @@ bool Scheduler::getFlag1()
 
 		}
 	}
->>>>>>> master
 	return false;
+
 }
-<<<<<<< HEAD
-//--------------------------------------//
-void Scheduler::setFlag2()
-{
-=======
 
 void Scheduler::sortingAlgorithm(process * Queue[], int size) // i will be implementing a simple bubble sort algorithm
 {
@@ -145,13 +112,10 @@ void Scheduler::sortingAlgorithm(process * Queue[], int size) // i will be imple
 void Scheduler::updatePriority()
 {
 	
->>>>>>> master
 }
-bool Scheduler::getFlag2()
+
+void Scheduler::schedulerRun()
 {
-<<<<<<< HEAD
-	return false;
-=======
 	process * process_running;
 	int Tq;
 
@@ -196,8 +160,8 @@ bool Scheduler::getFlag2()
 	{
 		process_running->set_burst_time(0); // set new burst time = 0, process has terminated (we do not put it back into queue)
 	}
->>>>>>> master
 }
+
 
 
 
