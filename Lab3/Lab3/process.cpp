@@ -59,3 +59,4 @@ int process::get_priority()
 {
 	return priority;
 }
+
