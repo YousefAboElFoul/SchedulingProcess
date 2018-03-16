@@ -1,3 +1,4 @@
 ﻿  Source.cpp
-c:\users\user\documents\github\schedulingprocess\lab3\lab3\source.cpp(42): error C2065: 'Process_size': undeclared identifier
-c:\users\user\documents\github\schedulingprocess\lab3\lab3\source.cpp(42): error C2228: left of '.setPID' must have class/struct/union
+c:\users\user\documents\github\schedulingprocess\lab3\lab3\source.cpp(44): warning C4390: ';': empty controlled statement found; is this the intent?
+c:\users\user\documents\github\schedulingprocess\lab3\lab3\source.cpp(17): warning C4101: 'my_num': unreferenced local variable
+  Lab3.vcxproj -> C:\Users\user\Documents\GitHub\SchedulingProcess\Lab3\Debug\Lab3.exe

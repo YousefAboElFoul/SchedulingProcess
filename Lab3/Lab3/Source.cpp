@@ -19,8 +19,9 @@ int main() {
 	ifstream myfile;
 	int counter = 0;
 	vector<process> Process_size;
-	string PID;
-	int arrival_time,burst_time,priorty;
+	string PID="";
+	char space = ' ';
+	int arrival_time=0,burst_time=0,priorty=0;
 
 
 	
@@ -37,23 +38,19 @@ int main() {
 				buffer >> size;
 				cout << "size is:" << size << endl;
 				Process_size.resize(size);
-				counter++;
+				counter=counter+1;
+				
 			}
-			else
-				myfile >> PID >> arrival_time >> burst_time >> priorty;
+			if (myfile >>PID>>arrival_time>>burst_time>>priorty);
 				
-				
-					Process_size[counter-1].set_PID(PID);
-					Process_size[counter-1].set_arrival_time(arrival_time);
-					Process_size[counter - 1].set_burst_time(burst_time);
-					Process_size[counter - 1].set_priority(priorty);
-					counter++;
-
-
-				
-			
-			cout << line << '\n';
-		//num
+			{	cout << line<<"am a bug<<"<<endl;
+				cout << PID << "," << arrival_time << "," << burst_time << "," << priorty << endl;
+			/*Process_size[counter-1].set_PID(PID);
+			Process_size[counter-1].set_arrival_time(arrival_time);
+			Process_size[counter - 1].set_burst_time(burst_time);
+			Process_size[counter - 1].set_priority(priorty);
+			counter++;
+			*/}
 		}
 		myfile.close();
 	}
