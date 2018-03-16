@@ -7,11 +7,11 @@ class process
 public:
 
 	process();
-	process(int,int,int,int);
+	process(string,int,int,int);
 	~process();
 
-	void set_PID(int);
-	int get_PID();
+	void set_PID(string);
+	string get_PID();
 
 	void set_arrival_time(int);
 	int get_arrival_time();
@@ -23,7 +23,8 @@ public:
 	int get_priority();
 
 private:
-	int PID, arrival_time, burst_time, priority;
+	string PID;
+	int arrival_time, burst_time, priority;
 
 };
 

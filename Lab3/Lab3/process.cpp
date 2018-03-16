@@ -8,7 +8,7 @@ process::process()
 
 }
 
-process::process(int pid, int at, int bt, int p)
+process::process(string pid, int at, int bt, int p)
 {
 	set_PID(pid);
 	set_arrival_time(at);
@@ -20,12 +20,12 @@ process::~process()
 {
 }
 
-void process::set_PID(int pid)
+void process::set_PID(string pid)
 {
 	PID = pid;
 }
 
-int process::get_PID()
+string process::get_PID()
 {
 	return PID;
 }
