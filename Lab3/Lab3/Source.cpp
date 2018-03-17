@@ -45,6 +45,7 @@ int main() {
 				
 			{	cout << line<<"am a bug<<"<<endl;
 				cout << PID << "," << arrival_time << "," << burst_time << "," << priorty << endl;
+
 			/*Process_size[counter-1].set_PID(PID);
 			Process_size[counter-1].set_arrival_time(arrival_time);
 			Process_size[counter - 1].set_burst_time(burst_time);
@@ -56,10 +57,7 @@ int main() {
 	}
 
 	else cout << "Unable to open file";
-	
 
-
-	system("Pause");
 
 	return 0;
 }
