@@ -47,13 +47,13 @@ bool Scheduler::getFlag()
 
 bool Scheduler::insertProcess(process * Queue[], process * p) // check if this is possible
 {
-	for (int i = 0; i < size; i++) // going through array
+	for (int i = 0; i < 140; i++) // going through array
 	{
 		if (Queue[i] == nullptr) // if not equal to null
 		{
 			Queue[i] = p; // insert in array
 
-			sortingAlgorithm(Queue);
+			sortingAlgorithm(Queue,140);
 
 			return true;
 		}
@@ -63,14 +63,14 @@ bool Scheduler::insertProcess(process * Queue[], process * p) // check if this i
 
 bool Scheduler::removeProcess(process * Queue[])
 {
-	for (int i = 0; i < size; i++) // going through array
+	for (int i = 0; i < 140; i++) // going through array
 	{
 		if (Queue[i] != nullptr) // if not equal to pointer
 		{
 
 				Queue[i] = NULL; // set equal to null
 
-				sortingAlgorithm(Queue); // its empty for now
+				sortingAlgorithm(Queue,140); // its empty for now
 
 				return true;
 		}
