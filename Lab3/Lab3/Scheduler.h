@@ -7,33 +7,33 @@ class Scheduler
 {
 public:
 	Scheduler();
-	Scheduler(bool);
+	Scheduler(bool,int);
 	//------setters and getters-------------//
 
-	process * getQueue1();
-	//--------------------------------------//
-	
-	process * getQueue2();
-
-	//--------------------------------------//
 	void setFlag(bool);
 	bool getFlag();
-	//--------------------------------------//
+
+	void setClock(int);
+	bool getClock();
 
 	//--------------------------------------//
 
-	bool insertProcess(process * [], process * );
-	bool removeProcess(process * []);
+	void insertProcess(process * [], process * );
+	void removeProcess(process * [], int );
 
-	void schedulerRun();
+	void isQueue1Empty(process * []);
 
-	void sortingAlgorithm(process * [], int);
+	void isQueue2Empty(process *[]);
+
+	int getHighestPriority(process *[], int);
+
+	void schedulerRun(process * [], process * []);
 
 	void updatePriority();
 
 private:
-	process * Queue1[140];
-	process * Queue2[140];
+
 	bool Flag;
+	int clock;
 };
 

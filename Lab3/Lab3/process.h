@@ -3,7 +3,8 @@
 using namespace std;
 
 class process
-{public:
+{
+public:
 
 	process();
 	process(string,int,int,int);

@@ -1,35 +1,18 @@
 #include "Scheduler.h"
+#include <string>
 #include <iostream>
 
 using namespace std;
 
 Scheduler::Scheduler()
 {
-	// initializing both Queues
-	for (int i = 0; i < 3; i++)
-	{
-		Queue1[i] = nullptr;
-		Queue2[i] = nullptr;
-	}
-
 }
-Scheduler::Scheduler(bool f)
+
+Scheduler::Scheduler(bool f,int c)
 {
 	// initializing flag
 	setFlag(f);
 
-}
-
-//getter function for queue1
-process * Scheduler::getQueue1()
-{
-	return *Queue1;
-}
-
-//getter function for queue2
-process * Scheduler::getQueue2()
-{
-	return *Queue2;
 }
 
 //setter function for flag
@@ -44,68 +27,92 @@ bool Scheduler::getFlag()
 	return Flag;
 }
 
-
-bool Scheduler::insertProcess(process * Queue[], process * p) // check if this is possible
+void Scheduler::setClock(int c)
 {
-	for (int i = 0; i < 140; i++) // going through array
+	clock = c;
+}
+
+bool Scheduler::getClock()
+{
+	return clock;
+}
+
+void Scheduler::insertProcess(process * Queue[], process * p) // check if this is possible
+{
+	for (int i = 0; i < 3; i++) // going through array
 	{
 		if (Queue[i] == nullptr) // if not equal to null
 		{
 			Queue[i] = p; // insert in array
+			break;
 
-			sortingAlgorithm(Queue,140);
-
-			return true;
 		}
 	}
-	return false;
 }
 
-bool Scheduler::removeProcess(process * Queue[])
+void Scheduler::removeProcess(process * Queue[], int x)
 {
-	for (int i = 0; i < 140; i++) // going through array
+
+		Queue[x] = nullptr;
+
+		//check if queue is empty after
+}
+
+void Scheduler::isQueue1Empty(process * Queue[])
+{
+	Flag = false;
+
+	for (int i = 0; i < 3; i++) // going through array
 	{
 		if (Queue[i] != nullptr) // if not equal to pointer
 		{
-
-				Queue[i] = NULL; // set equal to null
-
-				sortingAlgorithm(Queue,140); // its empty for now
-
-				return true;
-		}
-		else
-		{
-			Flag = false; // switch flags because active Queue is empty
+			Flag = true;
 
 		}
 	}
-	return false;
-
 }
 
-void Scheduler::sortingAlgorithm(process * Queue[], int size) // i will be implementing a simple bubble sort algorithm
+void Scheduler::isQueue2Empty(process * Queue[])
 {
-	int i;
-	bool swap_occured = true;
+	Flag = true;
 
-	while (swap_occured)
+	for (int i = 0; i < 3; i++) // going through array
 	{
-			swap_occured = false;
-			
-			for (i = 0; i < size - 1; i++)
+		if (Queue[i] != nullptr) // if not equal to pointer
+		{
+			Flag = false;
+
+		}
+	}
+}
+int Scheduler::getHighestPriority(process * Queue[], int size)
+{
+	int max = 500;
+	int temp;
+
+	for (int i = 0; i < size; i++)
+	{
+		if (Queue[i] != nullptr)
+		{
+			temp = (Queue[i]->get_priority());
+
+			if (temp < max)
 			{
-				if ((Queue[i+1]->get_priority()) > (Queue[i]->get_priority())) // add null case
-				{
-					
-					process * temp = Queue[i];
-					Queue[i] = Queue[i+1];
-					Queue[i+1] = temp;
-
-					swap_occured = true;
-
-				}
+				max = temp;
 			}
+		}
+	}
+
+	for (int i = 0; i < size; i++)
+	{
+		if (Queue[i] != nullptr)
+		{
+			if (max == (Queue[i])->get_priority())
+			{
+				return i;
+			}
+
+		}
 	}
 }
 
@@ -114,20 +121,22 @@ void Scheduler::updatePriority()
 	
 }
 
-void Scheduler::schedulerRun()
+void Scheduler::schedulerRun(process * Queue1[], process * Queue2[])
 {
 	process * process_running;
 	int Tq;
 
 	if (Flag == true)
 	{
-		process_running = Queue1[0];
-		removeProcess(Queue1); // make sure you can pass array of pointers
+		int index = getHighestPriority(Queue1, 3);
+		process_running = Queue1[index];
+		removeProcess(Queue1,index); //remove the right process
 	}
 	else
 	{
-		process_running = Queue2[0];
-		removeProcess(Queue2); // make sure you can pass array of pointers
+		int index = getHighestPriority(Queue2, 3);
+		process_running = Queue2[index];
+		removeProcess(Queue2,index); // make sure you can pass array of pointers
 	}
 
 	if ((process_running->get_priority()) < 100)
@@ -147,7 +156,7 @@ void Scheduler::schedulerRun()
 
 		process_running->set_burst_time(time_left); // set new burst time left after Tq
 
-		if (Flag == true)
+		if (Flag)
 		{
 			insertProcess(Queue2, process_running); // we are moving the processes back into expired queue
 		}
@@ -159,6 +168,15 @@ void Scheduler::schedulerRun()
 	else
 	{
 		process_running->set_burst_time(0); // set new burst time = 0, process has terminated (we do not put it back into queue)
+	}
+
+	if (Flag)
+	{
+		isQueue1Empty(Queue1);
+	}
+	else
+	{
+		isQueue2Empty(Queue2);
 	}
 }
 
